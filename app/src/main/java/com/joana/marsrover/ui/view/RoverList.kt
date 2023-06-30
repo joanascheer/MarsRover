@@ -13,7 +13,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.node.modifierElementOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,9 +25,10 @@ import com.joana.marsrover.domain.model.roverList
 
 @Composable
 fun RoverList(
+    modifier: Modifier,
     onClick: (roverName: String) -> Unit
 ) {
-    Surface(color = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()) {
+    Surface(color = MaterialTheme.colorScheme.background, modifier = modifier.fillMaxSize()) {
         LazyColumn {
             items(count = roverList.size, itemContent = { index ->
                 Rover(

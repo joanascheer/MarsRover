@@ -1,18 +1,35 @@
 package com.joana.marsrover.ui.view
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.joana.marsrover.domain.model.RoverManifestUiState
+import com.joana.marsrover.ui.manifestlist.MarsRoverManifestViewModel
 
 @Composable
 fun ManifestScreen(
-    roverName: String?
+    modifier: Modifier,
+    roverName: String?,
+    marsRoverManifestViewModel: MarsRoverManifestViewModel,
+    onClick: (roverName: String, sol: String) -> Unit
 ) {
-    Text(text = "Manifest Screen $roverName")
+    val viewState by marsRoverManifestViewModel.roverManifestUiState.collectAsStateWithLifecycle()
+    if (roverName != null) {
+        LaunchedEffect(Unit) {
+            marsRoverManifestViewModel.getMarsRoverManifest(roverName)
+        }
+
+        when(val roverManifestUiState = viewState) {
+            RoverManifestUiState.Error -> Error()
+            RoverManifestUiState.Loading -> Loading()
+            is RoverManifestUiState.Success -> ManifestList(
+                modifier = modifier,
+                roverManifestUiModelList = roverManifestUiState.roverManifestUiModelList,
+                roverName,
+                onClick)
+        }
+    }
 }
 
-@Preview
-@Composable
-fun ManifestScreenPreview() {
-    ManifestScreen("Perseverance")
-}
