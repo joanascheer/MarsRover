@@ -40,21 +40,13 @@ fun RoverList(
                 )
             })
         }
-        
     }
 }
 
 @Preview
 @Composable
 fun RoverPreview() {
-    Rover(
-        name = "Perseverance",
-        img = R.drawable.mr1,
-        landingDate = "04 março 2012",
-        distance = "11.56 km",
-    ) {
-
-    }
+    Rover("Perseverance", R.drawable.perseverance, "18 February 2021", "12.56 km") {}
 }
 
 @Composable

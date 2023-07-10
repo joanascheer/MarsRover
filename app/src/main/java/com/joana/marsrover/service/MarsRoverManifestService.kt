@@ -17,7 +17,7 @@ interface MarsRoverManifestService {
     companion object {
         private const val BASE_URL = "https://api.nasa.gov/"
 
-        fun create(): MarsRoverManifestService {
+        fun create() : MarsRoverManifestService {
             val logger = HttpLoggingInterceptor()
             logger.level =
                 if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE

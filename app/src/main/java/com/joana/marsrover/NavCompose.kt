@@ -35,10 +35,12 @@ import com.joana.marsrover.ui.view.RoverList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavCompose() {
+
     val items = listOf(
         Screen.Home,
         Screen.Saved
     )
+
     val navController = rememberNavController()
     val actions = remember(navController) { Action(navController) }
 
@@ -58,7 +60,7 @@ fun NavCompose() {
                                 )
                             },
                             label = {
-                                Text(stringResource(id = screen.resourceId))
+                                Text(text = stringResource(id = screen.resourceId))
                             },
                             selected = currentDestination?.hierarchy?.any {
                                 if (it.route?.contains("manifest") == true || it.route?.contains("photo") == true) {
@@ -114,7 +116,8 @@ fun NavCompose() {
                 }
                 composable(SAVED) {
                     PhotoListSavedScreen(
-                        modifier = modifier
+                        modifier = modifier,
+                        marsRoverSavedViewModel = hiltViewModel()
                     )
                 }
             }

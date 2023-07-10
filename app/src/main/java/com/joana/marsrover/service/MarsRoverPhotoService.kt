@@ -1,6 +1,7 @@
-package com.joana.marsrover.service.model
+package com.joana.marsrover.service
 
 import com.joana.marsrover.BuildConfig
+import com.joana.marsrover.service.model.RoverPhotoRemoteModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,7 +13,7 @@ import retrofit2.http.Query
 interface MarsRoverPhotoService {
 
     @GET("mars-photos/api/v1/rovers/{rover_name}/photos?api_key=Bp0wNlvEuIEmNPPSVP5pajLEQo6qYstw6qGBpCr7")
-    suspend fun getMarsRoverPhoto(
+    suspend fun getMarsRoverPhotos(
         @Path("rover_name") roverName: String,
         @Query("sol") sol: String,
     ): RoverPhotoRemoteModel

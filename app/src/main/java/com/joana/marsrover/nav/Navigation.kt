@@ -17,10 +17,10 @@ class Action(navController: NavController) {
     val home: () -> Unit = { navController.navigate(HOME) }
     val manifest: (roverName: String) -> Unit =
         { roverName ->
-        navController.navigate("manifest/${roverName}")
+            navController.navigate("manifest/${roverName}")
         }
     val photo: (roverName: String, sol: String) -> Unit =
-        {roverName, sol ->
+        { roverName, sol ->
             navController.navigate("photo/${roverName}?sol=${sol}")
         }
 }
@@ -32,5 +32,4 @@ sealed class Screen(
 ) {
     object Home: Screen("home", R.string.rover, R.drawable.ic_mars_rover)
     object Saved: Screen("saved", R.string.saved, R.drawable.ic_save)
-
 }

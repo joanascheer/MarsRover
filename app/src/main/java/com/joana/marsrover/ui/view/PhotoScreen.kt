@@ -21,13 +21,15 @@ fun PhotoScreen(
         LaunchedEffect(Unit) {
             marsRoverPhotoViewModel.getMarsRoverPhoto(roverName, sol)
         }
-
-        when (val roverPhotoUiState = viewState) {
+        when(val roverPhotoUiState = viewState) {
             RoverPhotoUiState.Error -> Error()
             RoverPhotoUiState.Loading -> Loading()
              is RoverPhotoUiState.Success -> PhotoList(
                  modifier = modifier,
-                 roverPhotoUiModelList = roverPhotoUiState.roverPhotoUiModelList)
+                 roverPhotoUiModelList = roverPhotoUiState.roverPhotoUiModelList) {
+                 roverPhotoUiModel ->
+                 marsRoverPhotoViewModel.changeSaveStatus(roverPhotoUiModel)
+             }
         }
     }
 }

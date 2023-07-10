@@ -53,8 +53,8 @@ fun Manifest(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(text = stringResource(id = R.string.sol, roverManifestUiModel.sol))
-            Text(text = stringResource(id = R.string.earthDate, roverManifestUiModel.earthDate))
-            Text(text = stringResource(id = R.string.photoNumber, roverManifestUiModel.photoNumber))
+            Text(text = stringResource(id = R.string.earth_date, roverManifestUiModel.earthDate))
+            Text(text = stringResource(id = R.string.photo_number, roverManifestUiModel.photoNumber))
         }
     }
 }
